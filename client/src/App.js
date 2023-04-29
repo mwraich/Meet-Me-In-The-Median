@@ -36,11 +36,14 @@ function App() {
 	return (
 		<div className="center">
 			<h1>Meet Me In The Median</h1>
-			<form className='medianForm' onSubmit={handleSubmit}>
-				<label>
+			<form className="medianForm" onSubmit={handleSubmit}>
+				<label htmlFor="numberInput">
 					Enter a number:
 					<input
 						type="number"
+            id="numberInput"
+            min="0"
+            required
 						value={number}
 						onChange={(e) => setNumber(e.target.value)}
 					/>
