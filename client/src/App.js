@@ -7,7 +7,6 @@ function App() {
 	const [error, setError] = useState(null);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setError(null);
 		try {
 			const response = await fetch('http://localhost:8000/api', {
 				method: 'POST',
@@ -16,13 +15,20 @@ function App() {
 				},
 				body: JSON.stringify({ number }),
 			});
-			const data = await response.json();
-			setResult(data.result);
+			if (response.ok) {
+				const data = await response.json();
+				setResult(data.result);
+				setError(null);
+			} else if (response.status === 400) {
+				// not a number, or a negative number
+				const data = await response.json();
+				setError(data.error);
+			} else {
+				setError('An error occurred while processing your request.');
+			}
 		} catch (error) {
-			setError(
-				'Oops, Something went wrong. Please make sure you submitted a valid number.',
-			);
 			console.error('Error fetching result:', error);
+			setError('An error occurred while connecting to the server.');
 		}
 	};
 	return (
