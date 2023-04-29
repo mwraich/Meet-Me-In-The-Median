@@ -1,4 +1,3 @@
-
 const sieveOfEratosthenes = (n) => {
 	const primes = [];
 	const isPrime = new Array(n + 1).fill(true);
@@ -37,4 +36,4 @@ const getMedianPrime = (number) => {
 	return getMedian(primes);
 };
 
-module.exports = { getMedianPrime };
+module.exports = { getMedianPrime, sieveOfEratosthenes, getMedian };
