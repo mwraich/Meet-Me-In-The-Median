@@ -4,23 +4,27 @@ import { useState } from 'react';
 function App() {
 	const [number, setNumber] = useState('');
 	const [result, setResult] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await fetch('http://localhost:8000/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({number})
-      })
-      const data = await response.json()
-      setResult(data.result)
-    } catch (error) {
-      console.error('Error fetching result:', error)
-    }
-  }
+	const [error, setError] = useState(null);
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setError(null);
+		try {
+			const response = await fetch('http://localhost:8000/api', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ number }),
+			});
+			const data = await response.json();
+			setResult(data.result);
+		} catch (error) {
+			setError(
+				'Oops, Something went wrong. Please make sure you submitted a valid number.',
+			);
+			console.error('Error fetching result:', error);
+		}
+	};
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
@@ -35,6 +39,7 @@ function App() {
 				</label>
 			</form>
 			{result !== null && <p>Result: {result.join(', ')}</p>}
+			{error !== null && <p>{error}</p>}
 		</div>
 	);
 }
