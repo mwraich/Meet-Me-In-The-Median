@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
+:root {
+	--primary: rgba(37, 33, 33, 0.797);
+	--light: #d7dae5;
+	--highlight: #a6d8d4;
+	--accent: #8eaf9d;
+	--darkerAccent: #6b7d7d;
+	--error: #d82b2b;
+	--base-font-size: 1.2rem;
+	--small-font-size: 1rem;
+	--medium-font-size: 1.8rem;
+	--large-font-size: 2.5rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+	font-family: Arial, sans-serif;
+	background-color: var(--light);
+	color: var(--primary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+	font-size: var(--large-font-size);
+	margin-bottom: 40px;
+	text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+	font-size: var(--medium-font-size);
+	margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+p {
+	font-size: var(--base-font-size);
 }
+
+/* FORM STYLING STARTS */
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+label {
+	display: flex;
+	flex-direction: column;
+}
+
+input {
+	font-size: var(--small-font-size);
+	padding: 10px;
+	border: 1px solid var(--accent);
+	border-radius: 5px;
+	width: 100%;
+	max-width: 300px;
+	box-sizing: border-box;
+	margin: 15px 0px;
+}
+input:focus {
+	outline: none;
+	border-color: var(--darkerAccent);
+}
+button {
+	font-size: var(--base-font-size);
+	padding: 10px 20px;
+	background-color: var(--accent);
+	color: var(--light);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s ease;
+}
+
+button:hover {
+	background-color: var(--darkerAccent);
+}
+.error {
+	color: var(--error);
+}
+
+/* FORM STYLING ENDS */

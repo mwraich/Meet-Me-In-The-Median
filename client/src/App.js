@@ -23,8 +23,10 @@ function App() {
 				// not a number, or a negative number
 				const data = await response.json();
 				setError(data.error);
+				setResult(null);
 			} else {
 				setError('An error occurred while processing your request.');
+				setResult(null);
 			}
 		} catch (error) {
 			console.error('Error fetching result:', error);
@@ -32,8 +34,9 @@ function App() {
 		}
 	};
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
+		<div className="center">
+			<h1>Meet Me In The Median</h1>
+			<form className='medianForm' onSubmit={handleSubmit}>
 				<label>
 					Enter a number:
 					<input
@@ -44,8 +47,14 @@ function App() {
 					<button type="submit">Submit</button>
 				</label>
 			</form>
-			{result !== null && <p>Result: {result.join(', ')}</p>}
-			{error !== null && <p>{error}</p>}
+			{result !== null && (
+				<div>
+					<h2>Your Median is: </h2>
+
+					<p>Result: {result.length > 0 ? result.join(', ') : 'No Median'}</p>
+				</div>
+			)}
+			{error !== null && <p className="error">{error}</p>}
 		</div>
 	);
 }
